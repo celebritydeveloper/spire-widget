@@ -1,6 +1,6 @@
 window.addEventListener('load', function(event) {
-    const liveURL = "https://fj-lite-node.herokuapp.com/widget";
-    const localURL = "http://localhost:4000/widget";
+    const liveURL = "https://fj-lite-node.herokuapp.com";
+    const localURL = "http://localhost:4000";
     const spire = document.querySelector("#spireWidget");
     const accessToken = spire.getAttribute("widget");
 
@@ -273,7 +273,7 @@ window.addEventListener('load', function(event) {
 
     const fetchWidget = async () => {
         try {
-          const res = await fetch(`${liveURL}/${accessToken}`, {
+          const res = await fetch(`${liveURL}/widget/${accessToken}`, {
             method: "GET",
             headers: {
               "Content-type": "application/json"
@@ -491,7 +491,7 @@ window.addEventListener('load', function(event) {
         const createFeedback = async (email, comment, rating, feedblockId) => {
           try {
             submitButton.textContent = "Submitting...";
-            const upload = await fetch(liveURL, {
+            const upload = await fetch(`${liveURL}/feedback`, {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json"
