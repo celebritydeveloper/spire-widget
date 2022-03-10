@@ -6,10 +6,16 @@ window.addEventListener('load', function(event) {
 
 
     let rating = 0;
+    const media = [];
 
 
     const body = document.querySelector("body");
     const button = document.createElement("button");
+    const overlay = document.createElement("div");
+    overlay.classList.add("widget-overlay");
+    const close = document.createElement("div");
+    close.classList.add("close");
+    close.textContent = "x";
 
       const formData = new FormData();
         
@@ -37,9 +43,7 @@ window.addEventListener('load', function(event) {
     back.classList.add("back");
     const backIcon = document.createElement("img");
     backIcon.src = "./images/arrow.svg";
-    const backSpan = document.createElement("span");
-    backSpan.textContent = "Back";
-    back.append(backIcon, backSpan);
+    back.appendChild(backIcon);
     const feedblockTitle = document.createElement("h4");
     feedblockTitle.classList.add("rating-title");
     const feedblockSubTitle = document.createElement("p");
@@ -50,132 +54,62 @@ window.addEventListener('load', function(event) {
     ratingBlock.classList.add("rating-block");
     const ratingStars = document.createElement("div");
     ratingStars.classList.add("rating-stars");
-    const emptyRatingStarOne = document.createElement("img");
-    emptyRatingStarOne.src = "./images/star.svg";
-    const emptyRatingStarTwo = document.createElement("img");
-    emptyRatingStarTwo.src = "./images/star.svg";
-    const emptyRatingStarThree = document.createElement("img");
-    emptyRatingStarThree.src = "./images/star.svg";
-    const emptyRatingStarFour = document.createElement("img");
-    emptyRatingStarFour.src = "./images/star.svg";
-    const emptyRatingStarFive = document.createElement("img");
-    emptyRatingStarFive.src = "./images/star.svg";
+    const ratingStarChecked = document.createElement("div");
+    ratingStarChecked.classList.add("rating-stars");
+    ratingStarChecked.style.display = "none";
 
-    ratingStars.append(emptyRatingStarOne, emptyRatingStarTwo, emptyRatingStarThree, emptyRatingStarThree, emptyRatingStarFour, emptyRatingStarFive);
 
-    emptyRatingStarOne.addEventListener("click", function(event) {
-        rating = 1;
-        emptyRatingStarOne.src = "./images/star-filled.svg";
-        emptyRatingStarTwo.src = "./images/star.svg";
-        emptyRatingStarThree.src = "./images/star.svg";
-        emptyRatingStarFour.src = "./images/star.svg";
-        emptyRatingStarFive.src = "./images/star.svg";
-        ratingBlock.style.display = "none";
-        form.style.display = "block";
+    for (let index = 0; index < 5; index++) {
+        const star = document.createElement("img");
+        star.src = "./images/star.svg";
+        star.classList.add("stars");
+        
+        ratingStars.append(star);
+
+        star.addEventListener("click", function(event) {
+            rating = index + 1;
+            emptyStar = null;
+            console.log(rating);
+            ratingStars.style.display = "none";
+
         for (let index = 0; index < rating; index++) {
             const star = document.createElement("img");
             star.src = "./images/star-filled.svg";
-            
-            ratingContainer.appendChild(star);
-        }
-        for (let index = 0; index < 4; index++) {
-            const star = document.createElement("img");
-            star.src = "./images/star.svg";
-            
-            ratingContainer.appendChild(star);
-        }
-    });
-
-    emptyRatingStarTwo.addEventListener("click", function(event) {
-        rating = 2;
-        emptyRatingStarOne.src = "./images/star-filled.svg";
-        emptyRatingStarTwo.src = "./images/star-filled.svg";
-        emptyRatingStarThree.src = "./images/star.svg";
-        emptyRatingStarFour.src = "./images/star.svg";
-        emptyRatingStarFive.src = "./images/star.svg";
-        ratingBlock.style.display = "none";
-        form.style.display = "block";
-        for (let index = 0; index < rating; index++) {
-            const star = document.createElement("img");
-            star.src = "./images/star-filled.svg";
-            
-            ratingContainer.appendChild(star);
-        }
-        for (let index = 0; index < 3; index++) {
-            const star = document.createElement("img");
-            star.src = "./images/star.svg";
-            
-            ratingContainer.appendChild(star);
-        }
-    });
-
-    emptyRatingStarThree.addEventListener("click", function(event) {
-        rating = 3;
-        emptyRatingStarOne.src = "./images/star-filled.svg";
-        emptyRatingStarTwo.src = "./images/star-filled.svg";
-        emptyRatingStarThree.src = "./images/star-filled.svg";
-        emptyRatingStarFour.src = "./images/star.svg";
-        emptyRatingStarFive.src = "./images/star.svg";
-        ratingBlock.style.display = "none";
-        form.style.display = "block";
-        for (let index = 0; index < rating; index++) {
-            const star = document.createElement("img");
-            star.src = "./images/star-filled.svg";
-            
-            ratingContainer.appendChild(star);
-        }
-        for (let index = 0; index < 2; index++) {
-            const star = document.createElement("img");
-            star.src = "./images/star.svg";
-            
-            ratingContainer.appendChild(star);
-        }
-    });
-
-    emptyRatingStarFour.addEventListener("click", function(event) {
-        rating = 4;
-        emptyRatingStarOne.src = "./images/star-filled.svg";
-        emptyRatingStarTwo.src = "./images/star-filled.svg";
-        emptyRatingStarThree.src = "./images/star-filled.svg";
-        emptyRatingStarFour.src = "./images/star-filled.svg";
-        emptyRatingStarFive.src = "./images/star.svg";
-        ratingBlock.style.display = "none";
-        form.style.display = "block";
-        for (let index = 0; index < rating; index++) {
-            const star = document.createElement("img");
-            star.src = "./images/star-filled.svg";
-            
-            ratingContainer.appendChild(star);
+            ratingStarChecked.style.display = "flex";
+            ratingStarChecked.append(star);
             console.log(rating);
         }
-        for (let index = 0; index < 1; index++) {
+        for (let i = 5; i > rating; i--) {
             const star = document.createElement("img");
             star.src = "./images/star.svg";
-            
-            ratingContainer.appendChild(star);
+            ratingStarChecked.style.display = "flex";
+            ratingStarChecked.append(star);
             console.log(rating);
         }
-    });
 
-    emptyRatingStarFive.addEventListener("click", function(event) {
-        rating = 5;
-        emptyRatingStarOne.src = "./images/star-filled.svg";
-        emptyRatingStarTwo.src = "./images/star-filled.svg";
-        emptyRatingStarThree.src = "./images/star-filled.svg";
-        emptyRatingStarFour.src = "./images/star-filled.svg";
-        emptyRatingStarFive.src = "./images/star-filled.svg";
-        ratingBlock.style.display = "none";
-        form.style.display = "block";
+
         for (let index = 0; index < rating; index++) {
             const star = document.createElement("img");
             star.src = "./images/star-filled.svg";
-            
             ratingContainer.appendChild(star);
-            console.log(rating);
         }
-    });
+        for (let i = 5; i > rating; i--) {
+            const star = document.createElement("img");
+            star.src = "./images/star.svg";
+            ratingContainer.appendChild(star);
+        }
 
-    ratingBlock.append(back, feedblockTitle, feedblockSubTitle, ratingStars);
+        setTimeout(() => {
+            ratingBlock.style.display = "none";
+            form.style.display = "block";
+        }, 500);
+
+        });
+    }
+
+    
+
+    ratingBlock.append(back, feedblockTitle, feedblockSubTitle, ratingStars, ratingStarChecked);
 
 
 
@@ -264,10 +198,9 @@ window.addEventListener('load', function(event) {
     screenshotInput.type = "file";
     screenshotInput.multiple = true;
     screenshotInput.name = "screenshot";
-    screenshotInput.placeholder = "Take a screenshot";
+    screenshotInput.placeholder = "Upload an Image";
     screenshotInput.classList.add("custom-file-input");
     screenshotInput.setAttribute("id", "screenshot");
-    screenshotInput.setAttribute("required", true);
     const screenshotIcon = document.createElement("img");
     screenshotIcon.src = "./images/iconCamera.svg";
     const screenshotSpan = document.createElement("span");
@@ -286,15 +219,56 @@ window.addEventListener('load', function(event) {
 
 
     const container = document.createElement("div");
-    container.classList.add("container");
+    container.classList.add("container", "disable");
     const feedblocks = document.createElement("div");
     feedblocks.classList.add("feedblocks");
     
     
+    
 
     button.addEventListener("click", function(event) {
-        container.style.display = "flex";
+        const overlay = document.querySelector(".widget-overlay");
+        const container = document.querySelector(".container");
+        const close = document.querySelector(".close");
+        if (overlay.classList.contains('active') && container.classList.contains('active')) {
+            overlay.classList.remove("active");
+            overlay.classList.add("disable");
+            container.classList.remove("active");
+            container.classList.add("disable");
+            close.classList.remove("active");
+            close.classList.add("disable");
+          } else {
+            overlay.classList.remove("disable");
+            overlay.classList.add("active");
+            container.classList.remove("disable");
+            container.classList.add("active");
+            close.classList.remove("disable");
+            close.classList.add("close", "active");
+            
+          }
     });
+
+
+    close.addEventListener("click", function(event) {
+      const overlay = document.querySelector(".widget-overlay");
+      const container = document.querySelector(".container");
+      const close = document.querySelector(".close");
+      if (overlay.classList.contains('active') && container.classList.contains('active') && close.classList.contains('active')) {
+          overlay.classList.remove("active");
+          overlay.classList.add("disable");
+          container.classList.remove("active");
+          container.classList.add("disable");
+          close.classList.remove("active");
+          close.classList.add("disable");
+        } else {
+          overlay.classList.remove("active");
+          overlay.classList.add("disable");
+          container.classList.remove("active");
+          container.classList.add("disable");
+          close.classList.remove("active");
+          close.classList.add("disable");
+        }
+  });
     
 
     const fetchWidget = async () => {
@@ -347,6 +321,7 @@ window.addEventListener('load', function(event) {
               } else {
                 image = "<img src='./images/icon-idea.svg' />"
               }
+              console.log(block);
             feedblocks.innerHTML += `
                 <div class="feedblock">
                     <div class="feedblock-img">
@@ -356,16 +331,23 @@ window.addEventListener('load', function(event) {
                         <h4 class="feedblock-title">${block.title}</h4>
                         <p class="feedblock-subTitle">${block.subTitle}</p>
                         <span class="slug" style={display: "none"}>${block.slug}</span>
+                        <span class="block" style={display: "none"}>${block.id}</span>
                     </div>
                 </div>`;
           });
     });
 
+
+
+        const imagePreview = document.createElement("div");
+        imagePreview.classList.add("image-preview");
+        
+
       
 
         
 
-          form.append(ratingContainer, emailContainer, commentContainer, screenshotContainer, buttonContainer);
+          form.append(ratingContainer, emailContainer, commentContainer, screenshotContainer, imagePreview, buttonContainer);
           widgetContainer.append(back, feedblockTitle, feedblockSubTitle, ratingBlock, form);
 
           back.addEventListener("click", function(event) {
@@ -376,22 +358,32 @@ window.addEventListener('load', function(event) {
             feedblockSubTitle.textContent = "";
             feedblocks.style.display = "flex";
             rating = 0;
+            ratingStars.style.display = "flex";
+            ratingStarChecked.style.display = "none";
             
           });
+
+          let feedblockId = null;
           
           feedblocks.addEventListener("click", function(event) {
-            
-            console.log(event.path[2]);
-            console.log(form);
+            console.log(event);
+            feedblockId = event.path[2].querySelector(".block").textContent;
+            console.log(feedblockId);
+            console.log(event.path[2].querySelector(".block").textContent);
             if (event.path[2].querySelector(".slug").textContent === "ratings") {
                 ratingBlock.style.display = "flex";
                 feedblocks.style.display = "none";
                 back.style.display = "flex";
+                feedblockTitle.style.display = "block";
+                feedblockSubTitle.style.display = "block";
                 feedblockTitle.textContent = event.path[2].querySelector(".feedblock-title").textContent;
                 feedblockSubTitle.textContent = event.path[2].querySelector(".feedblock-subTitle").textContent;
                 screenshotContainer.style.display = "none";
                 ratingContainer.style.display = "flex";
+                
             } else if (event.path[2].querySelector(".slug").textContent === "issue-reports") {
+                feedblockTitle.style.display = "block";
+                feedblockSubTitle.style.display = "block";
                 feedblockTitle.textContent = event.path[2].querySelector(".feedblock-title").textContent;
                 feedblockSubTitle.textContent = event.path[2].querySelector(".feedblock-subTitle").textContent
                 form.style.display = "block";
@@ -400,6 +392,8 @@ window.addEventListener('load', function(event) {
                 ratingContainer.style.display = "none";
                 screenshotContainer.style.display = "flex";
             } else {
+                feedblockTitle.style.display = "block";
+                feedblockSubTitle.style.display = "block";
                 feedblockTitle.textContent = event.path[2].querySelector(".feedblock-title").textContent;
                 feedblockSubTitle.textContent = event.path[2].querySelector(".feedblock-subTitle").textContent
                 form.style.display = "block";
@@ -410,48 +404,171 @@ window.addEventListener('load', function(event) {
             }
           });
 
-          container.append(companyName, feedblocks, widgetContainer, companyLogoContainer);
+          const submissionContainer = document.createElement("div");
+          submissionContainer.classList.add("submission");
+          const submissionFrame = document.createElement("iframe");
+          submissionFrame.classList.add("submission-frame");
+          submissionFrame.src = "https://embed.lottiefiles.com/animation/86372";
+          const submissionTitle = document.createElement("h3");
+          submissionTitle.classList.add("submission-title");
+          submissionTitle.textContent = "Submission received!";
+          const submissionSubTitle = document.createElement("p");
+          submissionSubTitle.classList.add("submission-subTitle");
+          submissionSubTitle.textContent = "Thank you for taking the time to let us know about your experience.";
+          const submissionButton = document.createElement("button");
+          submissionButton.classList.add("submission-button");
+          submissionButton.setAttribute("type", "button");
+          submissionButton.textContent = "Write Another Feedback";
+          submissionButton.addEventListener("click", function(event) {
+            feedblockTitle.style.display = "none";
+            feedblockSubTitle.style.display = "none";
+            ratingContainer.style.display = "none";
+            submissionContainer.style.display = "none";
+            ratingBlock.style.display = "none";
+            form.style.display = "none";
+            back.style.display = "none";
+            widgetContainer.style.display = "block";
+            feedblocks.style.display = "block";
+            companyName.style.display = "block";
+          });
+          submissionContainer.append(submissionFrame, submissionTitle, submissionSubTitle, submissionButton);
+
+          container.append(companyName, feedblocks, widgetContainer, submissionContainer, companyLogoContainer);
+
+          overlay.append(close, container);
+
+
+          const handleImageUpload = async (file) => {
+            try {
+              screenshotSpan.textContent = "Uploading...";
+              submitButton.disabled = true;
+              screenshotInput.setAttribute("disabled", true);
+              const formData = new FormData();
+              formData.append("file", file);
+              formData.append("upload_preset", "issue_reports");
+              console.log(formData.file);
+              const upload = await fetch("https://api.cloudinary.com/v1_1/spire-tech/upload", {
+                method: "POST",
+                body: formData,
+                credentials: "same-origin",
+              });
+       
+              const res = await upload.json();
+              if(res.secure_url) {
+                screenshotInput.setAttribute("disabled", false);
+                submitButton.disabled = false;
+                screenshotSpan.textContent = "Take a Screenshot";
+              }
+              console.log(res.secure_url);
+              return res.secure_url;
+            } catch (error) {
+              console.log(error);
+            }
+        }
+
 
         
 
+    
+        form.addEventListener('submit', (e) => {
+          e.preventDefault()
+          const FeatureFormData = new FormData(form);
+          formSubmission(FeatureFormData);
+        });
 
-        screenshotInput.addEventListener("change", function(event) {
-            console.log(event.target.files);
-            formData.append("file", event.target.files);
-            formData.append("upload_preset", "issue_reports");
-            console.log(formData);
-        })
-
-
-
-        // const selectImage = (event) => {
-        //     event.preventDefault();
-        //     const logo = event.target.files[0];
-        //     setSelectedImage(logo);
-        //     console.log(selectedImage);
-        //     if (!selectedImage) {
-        //         return;
-        //     }
-        // };
-    //   const formData = new FormData();
-    //   formData.append("file", file);
-    //   formData.append("upload_preset", "issue_reports");
-    //   const hello = fetch("https://api.cloudinary.com/v1_1/spire-tech/upload", {
-    //     method: "POST",
-    //     body: formData
-    //   })
-    //     .then((resp) => resp.json())
-    //     .then((data) => {
-    //       console.log(data);
-    //       console.log(data.secure_url);
-    //       return data;
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
+        async function formSubmission(form) {
+          const formArr = []
+          for (let [, value] of form) {
+            formArr.push(value)
+          }
+          const [email, comment] = formArr;
+          console.log(email, comment, rating);
+          createFeedback(email, comment, rating, feedblockId);
           
-    //     });
+        }
 
-    body.append(button, container);
+
+        const createFeedback = async (email, comment, rating, feedblockId) => {
+          try {
+            submitButton.textContent = "Submitting...";
+            const upload = await fetch(liveURL, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                credentials: "same-origin",
+                body: JSON.stringify({
+                    feedBlockId: feedblockId,
+                    customerEmail: email,
+                    comment: comment,
+                    media: media,
+                    channel: "mobile",
+                    rating: rating || 0
+                }),
+              });
+
+            const res = await upload.json();
+            console.log(res.success);
+            if(res.success === true) {
+              emailField.value = "";
+              commentField.value = ""
+              submitButton.textContent = "Submit";
+              rating = 0;
+              widgetContainer.style.display = "none";
+              companyName.style.display = "none";
+              submissionContainer.style.display = "flex";
+            }
+            
+            return await upload.json();
+            
+          } catch (error) {
+            console.log(error);
+          }
+      }
+
+      const previewPhoto = async (files) => {
+        console.log(files);
+        if (files) {
+          for (const file of files) {
+            console.log(file);
+              console.log(file);
+              const src = URL.createObjectURL(file);
+            const image = document.createElement("img");
+            image.setAttribute('src', src);
+            
+            imagePreview.append(image);
+            // imagePreview.innerHTML += `
+            //   <img src=${src}>
+            // `;
+        }
+        console.log(imagePreview);
+      }
+    }
+
+
+        screenshotInput.addEventListener("change", async function(event) {
+            console.log(event.target.files);
+            await previewPhoto(event.target.files)
+            console.log(screenshotInput.files);
+            event.preventDefault();
+                    
+            if(event.target.files) {
+                for (const file of event.target.files) {
+                    console.log(file.name);
+                    const regex = new RegExp('[^.]+$');
+                    const extension = file.name.match(regex);
+
+                    const result = await handleImageUpload(file);
+                    media.push({
+                      fileURL: result,
+                      category: extension[0] === "svg" || "png" || "jpg" || "jpeg" || "gif" ? "image" : "video"
+                    });
+                }
+            }
+            console.log(media);
+        });
+
+    body.append(overlay, button);
 });
 
 
