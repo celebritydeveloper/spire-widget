@@ -22,7 +22,7 @@ window.addEventListener('load', function(event) {
 
     const buttonImage = document.createElement("img");
     const buttonText = document.createElement("span");
-    buttonImage.src = "./images/icon-feedback.svg";
+    buttonImage.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986830/icons/icon-feedback_pvxbmu.svg";
     buttonText.textContent = "Leave a Feedback";
     button.classList.add("feedback-button");
 
@@ -32,7 +32,7 @@ window.addEventListener('load', function(event) {
     const companyLogoContainer = document.createElement("div");
     companyLogoContainer.classList.add("spire-logo");
     const companyLogo = document.createElement("img");
-    companyLogo.src = "./images/spire-logo.svg";
+    companyLogo.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986832/icons/spire-logo_fwxm5y.svg";
     companyLogoContainer.appendChild(companyLogo);
 
 
@@ -42,7 +42,7 @@ window.addEventListener('load', function(event) {
     const back = document.createElement("div");
     back.classList.add("back");
     const backIcon = document.createElement("img");
-    backIcon.src = "./images/arrow.svg";
+    backIcon.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986830/icons/arrow_uhkexa.svg";
     back.appendChild(backIcon);
     const feedblockTitle = document.createElement("h4");
     feedblockTitle.classList.add("rating-title");
@@ -61,7 +61,7 @@ window.addEventListener('load', function(event) {
 
     for (let index = 0; index < 5; index++) {
         const star = document.createElement("img");
-        star.src = "./images/star.svg";
+        star.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986833/icons/star_mj9lej.svg";
         star.classList.add("stars");
         
         ratingStars.append(star);
@@ -74,14 +74,14 @@ window.addEventListener('load', function(event) {
 
         for (let index = 0; index < rating; index++) {
             const star = document.createElement("img");
-            star.src = "./images/star-filled.svg";
+            star.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986832/icons/star-filled_vkvr3p.svg";
             ratingStarChecked.style.display = "flex";
             ratingStarChecked.append(star);
             console.log(rating);
         }
         for (let i = 5; i > rating; i--) {
             const star = document.createElement("img");
-            star.src = "./images/star.svg";
+            star.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986833/icons/star_mj9lej.svg";
             ratingStarChecked.style.display = "flex";
             ratingStarChecked.append(star);
             console.log(rating);
@@ -90,12 +90,12 @@ window.addEventListener('load', function(event) {
 
         for (let index = 0; index < rating; index++) {
             const star = document.createElement("img");
-            star.src = "./images/star-filled.svg";
+            star.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986832/icons/star-filled_vkvr3p.svg";
             ratingContainer.appendChild(star);
         }
         for (let i = 5; i > rating; i--) {
             const star = document.createElement("img");
-            star.src = "./images/star.svg";
+            star.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986833/icons/star_mj9lej.svg";
             ratingContainer.appendChild(star);
         }
 
@@ -131,7 +131,7 @@ window.addEventListener('load', function(event) {
     const ratingContainer = document.createElement("div");
     ratingContainer.classList.add("form-stars");
     const emptyRatingStar = document.createElement("img");
-    emptyRatingStar.src = "./images/star.svg";
+    emptyRatingStar.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986833/icons/star_mj9lej.svg";
     
 
     
@@ -202,9 +202,9 @@ window.addEventListener('load', function(event) {
     screenshotInput.classList.add("custom-file-input");
     screenshotInput.setAttribute("id", "screenshot");
     const screenshotIcon = document.createElement("img");
-    screenshotIcon.src = "./images/iconCamera.svg";
+    screenshotIcon.src = "https://res.cloudinary.com/spire-tech/image/upload/v1646986831/icons/iconCamera_tweagv.svg";
     const screenshotSpan = document.createElement("span");
-    screenshotSpan.textContent = "Take a Screenshot";
+    screenshotSpan.textContent = "Upload Image(s)";
     screenshotContainer.append(screenshotInput, screenshotIcon, screenshotSpan);
 
 
@@ -315,11 +315,11 @@ window.addEventListener('load', function(event) {
           blocks.forEach(function(block) {
               let image = null;
               if (block.slug === "ratings") {
-                  image = "<img src='./images/icon-emotion.svg' />"
+                  image = "<img src='https://res.cloudinary.com/spire-tech/image/upload/v1646986830/icons/icon-emotion_gv8rbp.svg' />"
               } else if(block.slug === "issue-reports") {
-                image = "<img src='./images/icon-warning.svg' />"
+                image = "<img src='https://res.cloudinary.com/spire-tech/image/upload/v1646986830/icons/icon-warning_znpv77.svg' />"
               } else {
-                image = "<img src='./images/icon-idea.svg' />"
+                image = "<img src='https://res.cloudinary.com/spire-tech/image/upload/v1646986830/icons/icon-idea_ayvihm.svg' />"
               }
               console.log(block);
             feedblocks.innerHTML += `
@@ -457,7 +457,7 @@ window.addEventListener('load', function(event) {
               if(res.secure_url) {
                 screenshotInput.setAttribute("disabled", false);
                 submitButton.disabled = false;
-                screenshotSpan.textContent = "Take a Screenshot";
+                screenshotSpan.textContent = "Upload Image(s)";
               }
               console.log(res.secure_url);
               return res.secure_url;
